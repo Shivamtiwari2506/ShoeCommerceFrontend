@@ -10,7 +10,7 @@ const AddToCartButton = ({ className = "", shoe }) => {
     try {
       const userId = decryptData(localStorage.getItem("userId"));
 
-      const response = await api.post("/add-to-cart", { userId, shoeId: shoe?._id });
+      const response = await api.post("/cart/add", { userId, shoeId: shoe?._id });
       if(response?.data && response?.data?.success == true) {
         dispatch(fetchCartItems(userId));
         toast.success(response?.data?.message || "Item added to cart");

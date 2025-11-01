@@ -41,21 +41,16 @@ const Banner = () => {
       </div>
       {/* Decorative Wave */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-        <svg className="w-full h-20 text-white" fill="currentColor" viewBox="0 0 1200 120">
-          <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" />
-        </svg>
-      </div>
-      {/* Background Decorative Element */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 1200 800">
-          <path
-            d="M0 400 C300 300, 900 500, 1200 400"
-            strokeWidth="2"
-            stroke="white"
-            className="animate-pulse"
-          />
-        </svg>
-      </div>
+  <svg
+    className="w-full h-20 text-gray-300"
+    fill="currentColor"
+    viewBox="0 0 1200 120"
+    preserveAspectRatio="none"
+  >
+    <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" />
+  </svg>
+</div>
+
     </section>
   );
 };
