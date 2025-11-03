@@ -1,47 +1,52 @@
-// src/components/CartItem.jsx
 import React from "react";
-import { IconMinus, IconPlus } from "@tabler/icons-react";
+import { IconMinus, IconPlus, IconHeart } from "@tabler/icons-react";
 
 const CartItem = ({ item, onIncrease, onDecrease }) => {
-
   return (
-    <div className="bg-neutral-900 rounded-2xl p-5 flex flex-col justify-between shadow-lg hover:shadow-xl transition-all">
+    <div className="flex flex-col sm:flex-row items-start gap-5 border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition-all duration-200">
+      {/* Left: Product Image */}
       <img
         src={item?.imageURL}
         alt={item?.name}
-        className="w-full h-52 object-cover rounded-xl mb-4"
+        className="w-full sm:w-36 h-40 object-contain rounded-lg bg-gray-50"
       />
 
-      <div>
-        <h2 className="text-xl font-semibold mb-1">{item?.name}</h2>
-        <p className="text-gray-400 text-sm mb-2">
-          {item?.brand} • {item?.gender} • {item?.category}
-        </p>
-        <p className="text-lg font-medium mb-4">${item?.price}</p>
+      {/* Right: Product Details */}
+      <div className="flex flex-col justify-between w-full">
+        {/* Price and Info */}
+        <div>
+          <p className="text-base sm:text-lg font-semibold text-gray-800">
+            ${item?.price}
+          </p>
+          <h2 className="text-base sm:text-lg font-medium text-gray-900 mt-1">
+            {item?.name}
+          </h2>
+          <p className="text-gray-500 text-sm">{item?.brand}</p>
+          <p className="text-gray-500 text-sm">{item?.category}</p>
+          <p className="text-gray-500 text-sm mt-1">Size M</p>
+        </div>
 
-        {/* Quantity Controls */}
-        <div className="flex items-center gap-3 mb-4">
-          <button
-            onClick={() => onDecrease(item?.shoeId)}
-            className="bg-neutral-800 p-2 rounded-lg hover:bg-neutral-700 transition"
-          >
-            <IconMinus size={16} />
-          </button>
-          <span className="text-white font-medium text-lg">{item?.quantity}</span>
-          <button
-            onClick={() => onIncrease(item?.shoeId)}
-            className="bg-neutral-800 p-2 rounded-lg hover:bg-neutral-700 transition"
-          >
-            <IconPlus size={16} />
+        {/* Quantity & Favorite */}
+        <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => onDecrease(item?.shoeId)}
+              className="border rounded-full p-2 hover:bg-gray-100 transition"
+            >
+              <IconMinus size={14} />
+            </button>
+            <span className="text-base font-medium">{item?.quantity}</span>
+            <button
+              onClick={() => onIncrease(item?.shoeId)}
+              className="border rounded-full p-2 hover:bg-gray-100 transition"
+            >
+              <IconPlus size={14} />
+            </button>
+          </div>
+          <button className="border rounded-full p-2 hover:bg-gray-100 transition">
+            <IconHeart size={16} />
           </button>
         </div>
-      </div>
-
-      {/* Checkout Button */}
-      <div className="flex justify-center mt-4">
-        <button className="w-full bg-white text-black px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 transition-all">
-          Checkout
-        </button>
       </div>
     </div>
   );

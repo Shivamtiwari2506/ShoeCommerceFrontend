@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 const HomePage = () => {
   const {user} = useSelector((state) => state.userState);
-  console.log(user);
   return (
     <div>
     <Banner/>

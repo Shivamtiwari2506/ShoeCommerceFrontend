@@ -20,11 +20,9 @@ const Header = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const { user } = useSelector((state) => state.userState);
   const { cart } = useSelector((state) => state.cartState);
-  console.log("cart", cart);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("user", user);
 
   const handleLogout = () => {
     dispatch(logoutUser());
