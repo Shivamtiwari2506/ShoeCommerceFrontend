@@ -38,7 +38,7 @@ const CartSummary = ({ products, total }) => {
               </button>
             </div>
         <button className="w-full bg-black text-white font-semibold py-3 rounded-full hover:opacity-90 transition">
-          Member Checkout
+          Checkout
         </button>
       </div>
     </div>

@@ -63,8 +63,8 @@ const CartPage = () => {
   if (!cart || !cart.products?.length) return <EmptyCart />;
 
   return (
-    <div className="min-h-screen bg-white text-black px-4 md:px-10 lg:px-16 py-10 flex flex-col lg:flex-row gap-10">
-      <div className="flex-1 lg:h-[80vh] bg-gray-50 rounded-lg p-2">
+    <div className="min-h-screen bg-white text-black px-4 md:px-10 lg:px-16 py-2 flex flex-col lg:flex-row gap-10">
+      <div className="flex-1 lg:h-[80vh] bg-gray-50 rounded-lg p-2 overflow-y-scroll">
         <h1 className="text-2xl md:text-3xl font-bold mb-6">Cart</h1>
         <div className="flex flex-col gap-6">
           {cart.products.map((item) => (
