@@ -1,7 +1,8 @@
-import React from "react";
-import { IconMinus, IconPlus, IconHeart } from "@tabler/icons-react";
-
+import React, { useState } from "react";
+import { IconMinus, IconPlus } from "@tabler/icons-react";
+import { HeartIcon } from "@heroicons/react/24/solid";
 const CartItem = ({ item, onIncrease, onDecrease }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   return (
     <div className="flex flex-col sm:flex-row items-start gap-5 border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition-all duration-200">
       {/* Left: Product Image */}
@@ -43,8 +44,12 @@ const CartItem = ({ item, onIncrease, onDecrease }) => {
               <IconPlus size={14} />
             </button>
           </div>
-          <button className="border rounded-full p-2 hover:bg-gray-100 transition">
-            <IconHeart size={16} />
+          <button onClick={() => setIsFavorite(!isFavorite)}>
+            <HeartIcon
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors hover:scale-105 ${
+                isFavorite ? "text-red-500" : "text-gray-400"
+              }`}
+            />
           </button>
         </div>
       </div>

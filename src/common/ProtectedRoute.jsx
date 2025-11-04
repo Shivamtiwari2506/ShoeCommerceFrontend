@@ -1,51 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
-import api from "../services/axiosInstance";
 import Loader from "../utils/Loader";
+import {jwtDecode} from "jwt-decode";
 
 const ProtectedRoute = ({ children }) => {
-  const [status, setStatus] = useState("checking"); // "checking" | "authorized" | "unauthorized"
+  const [status, setStatus] = useState("checking");
 
   useEffect(() => {
-    const verifyToken = async () => {
-      let token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("accessToken");
 
-      // No token → unauthorized
-      if (!token) {
+    if (!token) {
+      setStatus("unauthorized");
+      return;
+    }
+
+    try {
+      const { exp } = jwtDecode(token);
+
+      // If token expired
+      if (Date.now() >= exp * 1000) {
         setStatus("unauthorized");
-        return;
+      } else {
+        setStatus("authorized");
       }
-
-      try {
-        const { exp } = jwtDecode(token);
-
-        // If expired → refresh it
-        if (Date.now() >= exp * 1000) {
-          const response = await api.post("/refresh"); // refresh route returns new token
-          const newToken = response?.data?.accessToken;
-
-          if (newToken) {
-            localStorage.setItem("accessToken", newToken);
-            setStatus("authorized");
-          } else {
-            throw new Error("Invalid refresh response");
-          }
-        } else {
-          setStatus("authorized");
-        }
-      } catch (error) {
-        console.error("Auth error:", error);
-        localStorage.removeItem("accessToken");
-        setStatus("unauthorized");
-      }
-    };
-
-    verifyToken();
+    } catch (error) {
+      console.error("Invalid token:", error);
+      setStatus("unauthorized");
+    }
   }, []);
 
-  // Toast on unauthorized (after checking is done)
   useEffect(() => {
     if (status === "unauthorized") {
       toast.error("Session expired. Please log in again.");
@@ -53,7 +37,6 @@ const ProtectedRoute = ({ children }) => {
   }, [status]);
 
   if (status === "checking") return <Loader />;
-
   if (status === "unauthorized") return <Navigate to="/login" replace />;
 
   return children;

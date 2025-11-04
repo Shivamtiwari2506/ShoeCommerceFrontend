@@ -3,6 +3,7 @@ import ShoeCard from "../components/shop/ShoeCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShoeList } from "../redux/actions/shoeActions";
 import { Select } from 'antd';
+import Loader from "../utils/Loader";
 const ShopPage = () => {
   const [gender, setGender] = useState("");
   const [price, setPrice] = useState("");
@@ -97,7 +98,7 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loader/>}
       {error && <p className="text-red-600">Error: {error}</p>}
 
       <div className="w-full grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
