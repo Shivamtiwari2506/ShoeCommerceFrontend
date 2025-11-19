@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./utils/Loader";
 import ProtectedRoute from "./common/ProtectedRoute";
+import AboutPage from "./pages/AboutPage";
 
 // Lazy load pages
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -73,7 +74,7 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Layout>
-                  <CheckoutPage />
+                  <AboutPage />
                 </Layout>
               </ProtectedRoute>
             }

@@ -86,7 +86,7 @@ const Header = () => {
             </div>
 
             <span className="text-2xl font-extrabold tracking-tight text-gray-800 font-logo">
-              ArbnStap
+              ShoeVerse
             </span>
           </Link>
         </div>

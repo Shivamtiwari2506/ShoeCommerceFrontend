@@ -55,6 +55,7 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (err) {
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("userId");
         window.location.href = "/login";
         return Promise.reject(err);
       } finally {

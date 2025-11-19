@@ -20,7 +20,7 @@ const Footer = () => {
             <p className="mt-2 text-gray-600">
               Email:{" "}
               <a
-                href="mailto:support@shoetrend.com"
+                href="mailto:support@shoeverse.com"
                 className="hover:text-gray-900"
               >
                 support@shoetrend.com
