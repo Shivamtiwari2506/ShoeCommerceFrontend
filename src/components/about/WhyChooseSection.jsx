@@ -4,7 +4,7 @@ const WhyChooseSection = () => {
        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
          
          <img
-           src="../../src/assets/whyChooseUs.jpeg"
+           src="/images/whyChooseUs.jpeg"
            alt="Why Choose ShoeVerse"
            className="rounded-2xl shadow-lg"
          />

@@ -14,11 +14,10 @@ const VisionSection = () => {
          </div>
  
          <img
-           src="../../src/assets/Vision.jpeg"
+           src="/images/Vision.jpeg"
            alt="Vision"
            className="rounded-2xl shadow-lg order-1 md:order-2 max-h-80 w-full object-cover"
          />
- 
        </div>
      </section>
    );
