@@ -3,9 +3,13 @@ import ShoeCard from "../components/shop/ShoeCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShoeList } from "../redux/actions/shoeActions";
 import { Select } from 'antd';
+import { useNavigate } from "react-router-dom";
 import Loader from "../utils/Loader";
+
+
 const ShopPage = () => {
   const [gender, setGender] = useState("");
+  const navigate = useNavigate();
   const [price, setPrice] = useState("");
   const dispatch = useDispatch();
   const { shoes, loading, error } = useSelector((state) => state.shoeState);
@@ -26,6 +30,10 @@ const ShopPage = () => {
 
     setFilterCards(filtered);
   };
+
+  const handleShoeDetail = (shoe) => {
+    navigate(`/product/${shoe?._id}`);
+  }
 
   useEffect(() => {
     dispatch(fetchShoeList());
@@ -98,14 +106,13 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {loading && <Loader/>}
       {error && <p className="text-red-600">Error: {error}</p>}
 
-      <div className="w-full grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
+      {loading ? <Loader/> :  <div className="w-full grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
         {filterCards.map((item, index) => (
-          <ShoeCard key={item._id || index} shoe={item} />
+          <ShoeCard key={item._id || index} shoe={item} shoeDetail={handleShoeDetail} />
         ))}
-      </div>
+      </div>}
     </div>
   );
 };

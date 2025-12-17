@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StarIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { IoMdMale, IoMdFemale } from "react-icons/io";
-import AddToCartButton from "./AddToCartButton";  
+import AddToCartButton from "./AddToCartButton";
+import { IconHeart } from "@tabler/icons-react";
 
 const GenderIcon = ({ gender }) => {
   const IconComponent =
@@ -9,7 +10,7 @@ const GenderIcon = ({ gender }) => {
   return <IconComponent size={20} aria-hidden="true" />;
 };
 
-const ShoeCard = React.memo(({ shoe }) => {
+const ShoeCard = React.memo(({ shoe, shoeDetail }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
@@ -19,18 +20,19 @@ const ShoeCard = React.memo(({ shoe }) => {
         className="p-1 absolute top-0 right-0 z-10 rounded-full transition-colors focus:outline-none"
         aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
       >
-        <HeartIcon
-          className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors hover:scale-105 ${
-            isFavorite ? "text-red-500" : "text-gray-400"
-          }`}
+        <IconHeart
+          size={22}
+          fill={isFavorite ? "red" : "white"}
+          color={isFavorite ? "red" : "gray"}
         />
       </button>
 
       {/* Image Container */}
-      <div className="relative h-40 sm:h-56 md:h-64 w-full">
+      <div className="relative h-40 sm:h-56 md:h-64 w-full cursor-pointer">
         <img
           src={shoe?.imageURL}
           alt={shoe?.name}
+          onClick={() => shoeDetail(shoe)}
           className="w-full h-full object-cover p-4 transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
@@ -40,7 +42,7 @@ const ShoeCard = React.memo(({ shoe }) => {
       <div className="p-3 sm:p-4 pb-12 sm:pb-4 relative">
         {/* Top Row */}
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-sm sm:text-base font-semibold line-clamp-1 pr-2">
+          <h3 className="text-sm sm:text-base font-semibold line-clamp-1 pr-2 w-52">
             {shoe?.name}
           </h3>
           <GenderIcon gender={shoe?.gender} />

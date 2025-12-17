@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { HeartIcon } from "@heroicons/react/24/solid";
+import { IconHeart, IconMinus, IconPlus } from "@tabler/icons-react";
 const CartItem = ({ item, onIncrease, onDecrease }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
@@ -45,10 +44,10 @@ const CartItem = ({ item, onIncrease, onDecrease }) => {
             </button>
           </div>
           <button onClick={() => setIsFavorite(!isFavorite)}>
-            <HeartIcon
-              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors hover:scale-105 ${
-                isFavorite ? "text-red-500" : "text-gray-400"
-              }`}
+            <IconHeart
+                size={22}
+                fill={isFavorite ? "red" : "white"}
+                color={isFavorite ? "red" : "gray"}
             />
           </button>
         </div>
